@@ -59,10 +59,10 @@ const Survey = () => {
   }
 
   return (
-    <div className="full-bg-container bg-success pt-2 pb-2">
+    <div className="full-bg-container bg-success pt-2 pb-2 w-[250px]">
       <form className="bg-white m-3 rounded pt-2 w-[250px] text-dark" onSubmit={saveQuestion}>
         <div className="m-4 ">
-        <h1 className="fs-3 mb-3 pt-4 text-center fw-bolder">System Usability Scale (SUS) Survey</h1>
+        <h1 className="fs-3 mb-3 pt-4 text-center fw-bolder">Survey Website LAZNAS Al Irsyad</h1>
           <div>
           
       <div className="mt-3">
