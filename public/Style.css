@@ -8,7 +8,7 @@
 }
 
 form{
-    width: 24%;
+    
     background-color: white;
     border-radius: 10px;
     
@@ -50,7 +50,7 @@ h1{
     .full-bg-container {
         overflow-x :hidden;        
         background-color: rgb(3, 99, 43);
-        background-size: cover;
+        background-size: contain;
         background-position: center;
         justify-content: center;
       }
