@@ -10,8 +10,7 @@ import Admin from "./components/admin";
 
 function App() {
   return (
-    <BrowserRouter>
-    <Home/>
+    <BrowserRouter>    
       <Routes>
         {/* <Route path="/a" element={<UserList/>}/>
         <Route path="add" element={<AddUser/>}/>
