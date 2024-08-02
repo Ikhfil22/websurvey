@@ -12,6 +12,7 @@ form{
     background-color: white;
     border-radius: 10px;
     
+    
 }
 
 .btn-primary{
@@ -40,9 +41,11 @@ h1{
     color: black;
 }
 
-@media (max-width: 767px){
+@media (max-width: 315px){
     form{
         width: 250px !important;
+        background-color: white;
+    border-radius: 10px;
     }
     h4{
         font-size: 12px;
