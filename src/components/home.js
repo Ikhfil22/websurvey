@@ -9,7 +9,7 @@ const Home = () => {
   return (
     
       <div className="full-bg-container">
-          <form className="position-absolute top-50 start-50 translate-middle p-5">
+          <form className="position-absolute top-50 start-50 translate-middle p-5 form1">
             <h1 className="text-center text-dark fw-bolde">Apakah Anda <br />Menggunakan Smartphone?</h1>
             <div className="text-center mt-3">
             <div className="row justifi-content-evenly">

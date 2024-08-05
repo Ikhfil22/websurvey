@@ -61,7 +61,7 @@ const Survey = () => {
   return (
     <div className="full-bg-container bg-success pt-2 pb-2">
       <div className="bg-dark m-3 rounded p-2">
-        <form className="bg-white text-dark" onSubmit={saveQuestion}>
+        <form className="bg-white text-dark form2" onSubmit={saveQuestion}>
           <div className="m-4 ">
           <h1 className="fs-3 mb-3 pt-4 text-center fw-bolder">Survey Website LAZNAS Al Irsyad</h1>
             <div>

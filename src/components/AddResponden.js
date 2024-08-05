@@ -23,7 +23,7 @@ const AddResponden = () => {
 
   return (
     <div className="full-bg-container">
-      <form className="position-absolute top-50 start-50 translate-middle p-5" onSubmit={saveResponden}>           
+      <form className="position-absolute top-50 start-50 translate-middle p-5 form1" onSubmit={saveResponden}>           
         <h1 className="text-center text-dark fs-1 fw-b">DAFTAR <br/> RESPONDEN</h1>            
         <div className="mb-3 mt-5">
           <label className="form-label">Nama :</label>              

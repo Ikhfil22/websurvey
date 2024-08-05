@@ -13,6 +13,7 @@ form{
     border-radius: 10px;
     
     
+    
 }
 
 .btn-primary{
@@ -41,11 +42,11 @@ h1{
     color: black;
 }
 
-@media (max-width: 315px){
-    form{
+@media (max-width: 517px){
+    .form1{
         width: 250px !important;
         background-color: white;
-    border-radius: 10px;
+        border-radius: 10px;
     }
     h4{
         font-size: 12px;
@@ -60,6 +61,12 @@ h1{
       .container{
         overflow-x: hidden;
       }
+      .form2{
+        
+        background-color: white;
+        border-radius: 10px;
+    }
+      
 }
 
 .full-bg-container {
