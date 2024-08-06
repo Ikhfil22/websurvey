@@ -16,22 +16,54 @@ const Survey = () => {
   const [q9, setq9] = useState(null);
   const [q10, setq10] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
 
+  // const saveQuestion = async (e) => {
+  //   e.preventDefault();
+
+  //   if (
+  //     q1 !== null &&
+  //     q2 !== null &&
+  //     q3 !== null &&
+  //     q4 !== null &&
+  //     q5 !== null &&
+  //     q6 !== null &&
+  //     q7 !== null &&
+  //     q8 !== null &&
+  //     q9 !== null &&
+  //     q10 !== null
+  //   ) {
+  //     try {
+  //       await axios.post(
+  //         `https://survey-6778e-default-rtdb.firebaseio.com/responden/${id}/survey.json?auth=mN0ZLt26g73rQLmvK3o2tJG85bIx3TamO8OpJ7wW`, 
+  //         { q1,q2,q3,q4,q5,q6,q7,q8,q9,q10 }
+  //       );
+  //       setSubmitted(true);
+  //     } catch (error) {
+  //       console.error('Error adding survey: ', error);
+  //     }
+  //   }
+  // };
   const saveQuestion = async (e) => {
     e.preventDefault();
+    let newErrors = {};
 
-    if (
-      q1 !== null &&
-      q2 !== null &&
-      q3 !== null &&
-      q4 !== null &&
-      q5 !== null &&
-      q6 !== null &&
-      q7 !== null &&
-      q8 !== null &&
-      q9 !== null &&
-      q10 !== null
-    ) {
+    // Cek setiap pertanyaan apakah sudah diisi
+    if (q1 === null) newErrors.q1 = "Pertanyaan 1 wajib diisi";
+    if (q2 === null) newErrors.q2 = "Pertanyaan 2 wajib diisi";
+    if (q3 === null) newErrors.q3 = "Pertanyaan 3 wajib diisi";
+    if (q4 === null) newErrors.q4 = "Pertanyaan 4 wajib diisi";
+    if (q5 === null) newErrors.q5 = "Pertanyaan 5 wajib diisi";
+    if (q6 === null) newErrors.q6 = "Pertanyaan 6 wajib diisi";
+    if (q7 === null) newErrors.q7 = "Pertanyaan 7 wajib diisi";
+    if (q8 === null) newErrors.q8 = "Pertanyaan 8 wajib diisi";
+    if (q9 === null) newErrors.q9 = "Pertanyaan 9 wajib diisi";
+    if (q10 === null) newErrors.q10 = "Pertanyaan 10 wajib diisi";
+
+    setErrors(newErrors);
+
+    // Jika tidak ada error, kirim data ke Firebase
+    if (Object.keys(newErrors).length === 0) {
       try {
         await axios.post(
           `https://survey-6778e-default-rtdb.firebaseio.com/responden/${id}/survey.json?auth=mN0ZLt26g73rQLmvK3o2tJG85bIx3TamO8OpJ7wW`, 
@@ -43,7 +75,6 @@ const Survey = () => {
       }
     }
   };
-
   if (submitted) {
     return (
     <div className="full-bg-container bg-success pt-2 pb-2 align-middle">
@@ -73,7 +104,7 @@ const Survey = () => {
               Saya akan sering menggunakan/mengunjungi website LAZNAS Al-Irsyad
             </label>
           </div>
-          
+          {errors.q1 && <div className="text-danger">{errors.q1}</div>}
           <div className="ms-4">
             <div>
               <input 
@@ -126,6 +157,7 @@ const Survey = () => {
               Saya merasa website LAZNAS Al-Irsyad rumit
             </label>
           </div>
+          {errors.q2 && <div className="text-danger">{errors.q2}</div>}
           <div className="ms-4">
             <div>
               <input 
@@ -177,6 +209,7 @@ const Survey = () => {
                   Saya merasa website LAZNAS Al-Irsyad mudah digunakan
                 </label>
           </div>
+          {errors.q3 && <div className="text-danger">{errors.q3}</div>}
           <div className="ms-4">          
             <div>
               <input 
@@ -228,6 +261,7 @@ const Survey = () => {
                   Saya merasa membutuhkan bantuan dari orang teknisi untuk dapat menggunakan website LAZNAS Al-Irsyad
                 </label>
           </div>
+          {errors.q4 && <div className="text-danger">{errors.q4}</div>}
           <div className="ms-4">
             <div>
               <input 
@@ -279,6 +313,7 @@ const Survey = () => {
                   Saya merasa berbagai fungsi di website LAZNAS Al-Irsyad berjalan dengan baik
                 </label>
           </div>
+          {errors.q5 && <div className="text-danger">{errors.q5}</div>}
           <div className="ms-4">
             <div>
               <input 
@@ -330,6 +365,7 @@ const Survey = () => {
                   Saya merasa ada banyak hal yang tidak konsisten pada website ini
                 </label>
           </div>
+          {errors.q6 && <div className="text-danger">{errors.q6}</div>}
           <div className="ms-4">
             <div>
               <input 
@@ -381,6 +417,7 @@ const Survey = () => {
                   Saya merasa ada banyak pengguna akan mudah memahami cara penggunaan dengan cepat
                 </label>
           </div>
+          {errors.q7 && <div className="text-danger">{errors.q7}</div>}
           <div className="ms-4">
             <div>
               <input 
@@ -432,6 +469,7 @@ const Survey = () => {
               Saya merasa website LAZNAS Al-Irsyad sulit dipahami pengguna
             </label>
           </div>
+          {errors.q8 && <div className="text-danger">{errors.q8}</div>}
           <div className="ms-4">
             <div>
               <input 
@@ -483,6 +521,7 @@ const Survey = () => {
                 Saya sangat yakin website LAZNAS Al-Irsyad dapat digunakan dengan mudah
               </label>
           </div>
+          {errors.q9 && <div className="text-danger">{errors.q9}</div>}
           <div className="ms-4">
             <div>
               <input 
@@ -534,6 +573,7 @@ const Survey = () => {
                 Saya perlu memahami terlebih dahulu sebelum menggunakan website LAZNAS A-l-Irsyad
               </label>
           </div>
+          {errors.q10 && <div className="text-danger">{errors.q10}</div>}
           <div className="ms-4">
             <div>
               <input 
