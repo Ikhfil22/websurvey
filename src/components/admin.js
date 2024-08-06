@@ -1,8 +1,10 @@
 // src/components/Admin.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Table } from 'react-bootstrap';
+import { Table,Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 
 
 const Admin = () => {
@@ -70,6 +72,53 @@ const Admin = () => {
     fetchData();
   }, []);
 
+  const handleDownload = () => {
+    const wb = XLSX.utils.book_new();
+    const wsData = Object.entries(data).map(([key, respondent]) => {
+      let oddSum = 0;
+      let evenSum = 0;
+
+      for (let i = 1; i <= 10; i++) {
+        const questionValue = respondent.survey ? Object.values(respondent.survey)[0][`q${i}`] : 0;
+        if (typeof questionValue === 'number' && !isNaN(questionValue)) {
+          if (i % 2 === 1) { // odd
+            oddSum += (questionValue - 1);
+          } else { // even
+            evenSum += (5 - questionValue);
+          }
+        }
+      }
+
+      const totalScore = oddSum + evenSum;
+      const persentaseSUS = totalScore * 2.5;
+
+      return {
+        Name: respondent.name,
+        Age: respondent.age,
+        Q1: respondent.survey ? Object.values(respondent.survey)[0].q1 : 'N/A',
+        Q2: respondent.survey ? Object.values(respondent.survey)[0].q2 : 'N/A',
+        Q3: respondent.survey ? Object.values(respondent.survey)[0].q3 : 'N/A',
+        Q4: respondent.survey ? Object.values(respondent.survey)[0].q4 : 'N/A',
+        Q5: respondent.survey ? Object.values(respondent.survey)[0].q5 : 'N/A',
+        Q6: respondent.survey ? Object.values(respondent.survey)[0].q6 : 'N/A',
+        Q7: respondent.survey ? Object.values(respondent.survey)[0].q7 : 'N/A',
+        Q8: respondent.survey ? Object.values(respondent.survey)[0].q8 : 'N/A',
+        Q9: respondent.survey ? Object.values(respondent.survey)[0].q9 : 'N/A',
+        Q10: respondent.survey ? Object.values(respondent.survey)[0].q10 : 'N/A',
+        OddSum: oddSum,
+        EvenSum: evenSum,
+        TotalScore: totalScore,
+        TotalSUS: persentaseSUS.toFixed(2),
+      };
+    });
+
+    const ws = XLSX.utils.json_to_sheet(wsData);
+    XLSX.utils.book_append_sheet(wb, ws, 'SurveyResults');
+
+    const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    saveAs(new Blob([wbout], { type: 'application/octet-stream' }), 'survey_results.xlsx');
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
@@ -77,7 +126,7 @@ const Admin = () => {
     <div className='full-bg-container'>
       <div className="container mt-5 bg-white rounded">
       <h1 className='text-center p-3 fs-3 text-dark fw-bolder'>Survey Results</h1>
-      <div className='d-flex m-2 d-grid gap-2'>
+      <div className='d-flex m-2 cards-container'>
         <div className='card'>
           <div className='card-body'> 
             <h2 className='fw-bold'>Average Score:<br/></h2>
@@ -92,9 +141,10 @@ const Admin = () => {
               {respondentCount} </p>
           </div>
         </div>       
-        
       </div>
-      
+      <div>
+        <Button className='mb-3 w-50 ' onClick={handleDownload}>Download as Excel</Button>
+      </div>
       <Table striped bordered hover>
         <thead>
           <tr>

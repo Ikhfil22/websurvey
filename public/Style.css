@@ -80,3 +80,16 @@ h1{
   .p{
     font-size: 12px;
   }
+
+  .cards-container {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
