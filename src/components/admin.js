@@ -7,6 +7,7 @@ import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 
 
+
 const Admin = () => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
@@ -119,29 +120,43 @@ const Admin = () => {
     saveAs(new Blob([wbout], { type: 'application/octet-stream' }), 'survey_results.xlsx');
   };
 
+  const handleDelete = async (id) => {
+  try {
+    await axios.delete(`https://survey-6778e-default-rtdb.firebaseio.com/responden/${id}.json?auth=mN0ZLt26g73rQLmvK3o2tJG85bIx3TamO8OpJ7wW`);
+    setData((prevData) => {
+      const updatedData = { ...prevData };
+      delete updatedData[id];
+      return updatedData;
+    });
+  } catch (error) {
+    console.error('Error deleting data:', error);
+  }
+};
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div className='full-bg-container'>
       <div className="container mt-5 bg-white rounded">
-      <h1 className='text-center p-3 fs-3 text-dark fw-bolder'>Survey Results</h1>
+      <h1 className='text-center p-3 fs-1 text-dark fw-bolder'>Survey Results</h1>
       <div className='d-flex m-2 cards-container'>
         <div className='card'>
           <div className='card-body'> 
-            <h2 className='fw-bold'>Average Score:<br/></h2>
+            <p className='fw-bold fs-3'>Average Score:<br/></p>
             <p className='fs-1'>
             {averageScore.toFixed(2)}</p>
           </div>          
         </div> 
         <div className='card'>
           <div className='card-body'>
-            <h2 className='fw-bold'>Total Respondents:<br/></h2>            
+            <p className='fw-bold fs-3'>Total Respondents:<br/></p>            
             <p className='fs-1'> 
               {respondentCount} </p>
           </div>
         </div>       
       </div>
+      
       <div>
         <Button className='mb-3 w-50 ' onClick={handleDownload}>Download as Excel</Button>
       </div>
@@ -164,6 +179,7 @@ const Admin = () => {
             <th>Even Sum</th>
             <th>Score</th>
             <th>Total * 2.5</th>
+            <th>Act</th>
           </tr>
         </thead>
         <tbody>
@@ -204,6 +220,11 @@ const Admin = () => {
                 <td>{evenSum}</td>
                 <td>{totalScore}</td>
                 <td>{persentaseSUS.toFixed(2)}</td>
+                <td>
+          <Button variant="danger" onClick={() => handleDelete(key)}>
+            Delete
+          </Button>
+        </td>
             </tr>
            );
           })}
