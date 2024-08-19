@@ -120,7 +120,7 @@ const Survey = () => {
                 name="q1" 
                 value="2" 
                 onChange={(e) => setq1(parseInt(e.target.value))}
-              /> Kurang Setuju
+              /> Cukup Tidak Setuju
             </div>
             <div>
               <input 
@@ -173,7 +173,7 @@ const Survey = () => {
                 name="q2" 
                 value="2" 
                 onChange={(e) => setq2(parseInt(e.target.value))}
-              /> Kurang Setuju
+              /> Cukup Tidak Setuju
             </div>
             <div>
               <input 
@@ -225,7 +225,7 @@ const Survey = () => {
                 name="q3" 
                 value="2" 
                 onChange={(e) => setq3(parseInt(e.target.value))}
-              /> Kurang Setuju
+              /> Cukup Tidak Setuju
             </div>
             <div>
               <input 
@@ -233,7 +233,7 @@ const Survey = () => {
                 name="q3" 
                 value="3" 
                 onChange={(e) => setq3(parseInt(e.target.value))}
-              /> Nrtral
+              /> Netral
             </div>
             <div>
               <input 
@@ -277,7 +277,7 @@ const Survey = () => {
                 name="q4" 
                 value="2" 
                 onChange={(e) => setq4(parseInt(e.target.value))}
-              /> Kurang Setuju
+              /> Cukup Tidak Setuju
             </div>
             <div>
               <input 
@@ -329,7 +329,7 @@ const Survey = () => {
                 name="q5" 
                 value="2" 
                 onChange={(e) => setq5(parseInt(e.target.value))}
-              /> Kurang Setuju
+              /> Cukup Tidak Setuju
             </div>
             <div>
               <input 
@@ -381,7 +381,7 @@ const Survey = () => {
                 name="q6" 
                 value="2" 
                 onChange={(e) => setq6(parseInt(e.target.value))}
-              /> Kurang Setuju
+              /> Cukup Tidak Setuju
             </div>
             <div>
               <input 
@@ -433,7 +433,7 @@ const Survey = () => {
                 name="q7" 
                 value="2" 
                 onChange={(e) => setq7(parseInt(e.target.value))}
-              /> Kurang Setuju
+              /> Cukup Tidak Setuju
             </div>
             <div>
               <input 
@@ -485,7 +485,7 @@ const Survey = () => {
                 name="q8" 
                 value="2" 
                 onChange={(e) => setq8(parseInt(e.target.value))}
-              /> Kurang Setuju
+              /> Cukup Tidak Setuju
             </div>
             <div>
               <input 
@@ -537,7 +537,7 @@ const Survey = () => {
                 name="q9" 
                 value="2" 
                 onChange={(e) => setq9(parseInt(e.target.value))}
-              /> Kurang Setuju
+              /> Cukup Tidak Setuju
             </div>
             <div>
               <input 
@@ -589,7 +589,7 @@ const Survey = () => {
                 name="q10" 
                 value="2" 
                 onChange={(e) => setq10(parseInt(e.target.value))}
-              /> Kurang Setuju
+              /> Cukup Tidak Setuju
             </div>
             <div>
               <input 
