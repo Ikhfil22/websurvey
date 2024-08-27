@@ -1,7 +1,7 @@
 // src/components/Admin.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Table,Button } from 'react-bootstrap';
+import { Table,Button,ProgressBar} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
@@ -136,6 +136,15 @@ const Admin = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
+  const getSUSCategory = (score) => {
+    if (score >= 100) return "Best Imaginable";
+    if (score >= 80.3) return "Excellent";
+    if (score >= 68 && score < 80.3) return "Good";
+    if (score >= 50 && score < 68) return "OK";
+    if (score >= 25 && score < 50) return "Poor";
+    return "Worst Imaginable";
+  };
+
   return (
     <div className='full-bg-container'>
       <div className="container mt-5 bg-white rounded">
@@ -156,7 +165,16 @@ const Admin = () => {
           </div>
         </div>       
       </div>
-      
+      <ProgressBar 
+                now={averageScore} 
+                max={100} 
+                label={`${getSUSCategory(averageScore)} (${averageScore.toFixed(2)})`} 
+                variant={
+                  averageScore >= 80.3 ? "success" :
+                  averageScore >= 68 ? "info" :
+                  averageScore >= 50 ? "warning" : "danger"
+                }
+              />
       <div>
         <Button className='mb-3 w-50 ' onClick={handleDownload}>Download as Excel</Button>
       </div>
